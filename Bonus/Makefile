@@ -1,5 +1,5 @@
 CC = cc 
-NAME = cub3D
+NAME = cub3D_bonus
 MLX = libmlx42.a
 CFLAGS = -g -fsanitize=address #-fsanitize=undefined -Wall -Wextra -Werror
 LDFLAGS = -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib" -L. -lmlx42 -framework OpenGL -framework AppKit

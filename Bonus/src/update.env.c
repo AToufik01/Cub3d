@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:36:50 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/08/14 13:47:46 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/08/28 23:08:03 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,10 @@
 void ft_update_env(void  *d)
 {
     t_data *data = (t_data *)d;
-    int32_t x, y;
-    mlx_get_mouse_pos(data->mlx, &x, &y);
-    if (mlx_is_key_down(data->mlx, MLX_KEY_UP)
-        || mlx_is_key_down(data->mlx, MLX_KEY_DOWN) 
-        || mlx_is_key_down(data->mlx, MLX_KEY_S)
-        || mlx_is_key_down(data->mlx, MLX_KEY_W))
+    // mouse(d);
+    if (mlx_is_key_down(data->mlx, MLX_KEY_UP)|| mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)|| mlx_is_key_down(data->mlx, MLX_KEY_W))
         data->player->turnDirection = 0;
-    else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) 
-        || mlx_is_key_down(data->mlx, MLX_KEY_LEFT)
-        || mlx_is_key_down(data->mlx, MLX_KEY_A) 
-        || mlx_is_key_down(data->mlx, MLX_KEY_D)
-        ||mlx_is_mouse_down(data->mlx, MLX_MOUSE_BUTTON_LEFT) == 1)
+    else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || mlx_is_key_down(data->mlx, MLX_KEY_A) || mlx_is_key_down(data->mlx, MLX_KEY_D)||mlx_is_mouse_down(data->mlx, MLX_MOUSE_BUTTON_LEFT) == 1)
         data->player->walkDirection = 0;
     if (mlx_is_key_down(data->mlx, MLX_KEY_UP) == 1 || mlx_is_key_down(data->mlx, MLX_KEY_W))
     {

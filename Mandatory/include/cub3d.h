@@ -16,17 +16,13 @@
 #define NUM_IMAGES_SHOT 14
 #define NUM_IMAGES_LOAD 37
 #define NUM_IMAGES_VIEW 67
-#define WIDTH_TEXTUER 1024
-#define HEIGHT_TEXTUER 1024
 // #define TILE_SIZE 64//
-#define TILE_SIZE 32// 32 tile size just fo map
 #define TILE_MAP 250
+#define TILE_SIZE 1024// 32 tile size just fo map
 #define NBR_RAYS 1500
-// #define WINDOW_WHIDTH 600 ///
 #define WINDOW_WHIDTH 1500 ///
 #define WINDOW_HEIGHT 900 ///
-#define FOV_ANGLE (80 * (M_PI / 180))
-
+#define FOV_ANGLE (60 * (M_PI / 180))
 
 /// ////
 typedef struct s_player
@@ -42,10 +38,6 @@ typedef struct s_player
     float   moveSpeed;
     mlx_image_t *img_player;
     // uint32_t *walltexteur;
-    mlx_texture_t*walltexteur_n; //// 
-    mlx_texture_t*walltexteur_s; //// 
-    mlx_texture_t*walltexteur_w; //// 
-    mlx_texture_t*walltexteur_e; //// 
     float rotationSpeed;
 
 }   t_player;
@@ -69,6 +61,10 @@ typedef struct s_texture
     char *south_texture;
     char *east_texture;
     char *west_texture;
+    mlx_texture_t*walltexteur_n; //// 
+    mlx_texture_t*walltexteur_s; //// 
+    mlx_texture_t*walltexteur_w; //// 
+    mlx_texture_t*walltexteur_e; //// 
 }           t_texture;
 
 
@@ -128,8 +124,7 @@ typedef struct s_data
 
 
 
-
-
+void load_images_texteurs(t_data *data);
 void load_images(t_data *data);
 void ft_wait_move_animation(void  *d);
 
@@ -180,7 +175,7 @@ int     all_element_exist(t_data *data);
 
 //check_map.c
 int     map(t_list *ptr, t_data *data);
-void    set_map(t_list *ptr, t_data *data);
+int     set_map(t_list *ptr, t_data *data);
 int     position_of_player(t_data *data);
 int     is_valid_Map(t_data * data);
 
@@ -189,14 +184,15 @@ int     set_color(t_color *color, char *color_path);
 void    set_element(t_data *data, char *s, int *size, char c);
 void    get_element(t_data *data, char *s, int *size, int *i);
 int     get_color(t_element *element, char *color, char type);
-void    setup_textures_colors(t_data *data);
+// void    setup_textures_colors(t_data *data);
+void    setup_colors(t_data *data);
 t_list  *get_map(t_data *data);
 
 //free_data.c
 void    free_array(char **array);
 void    print_error(char *str);
 void    free_data(t_data *data, int flag);
-
+void    free_structs(t_data *data);
 
 //utils.c
 void    handle_space(char *s, int *i, int *j);

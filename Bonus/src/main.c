@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 14:30:18 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/08/14 15:08:34 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/08/29 13:19:32 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    inite_data_player(t_data *data)
     data->player->walltexteur_e = mlx_load_png(data->texture->east_texture);
     convert_abgr_to_rgba(data->player->walltexteur_e);
 
-    if (!data->player->walltexteur_n || !data->player->walltexteur_w ||!data->player->walltexteur_s ||!data->player->walltexteur_e)
+    if (!data->player->walltexteur_n || !data->player->walltexteur_w || !data->player->walltexteur_s || !data->player->walltexteur_e)
     {
         // ft_lstclear(data->texture);
         printf("Error \"load png\"\n");
@@ -57,8 +57,8 @@ void    inite_data_player(t_data *data)
     data->player->radius = 5;
     data->player->turnDirection = 0;
     data->player->walkDirection = 0;
-    data->player->moveSpeed = 3;
-    data->player->rotationSpeed = 10* (M_PI / 180);
+    data->player->moveSpeed = 80;
+    data->player->rotationSpeed = 20* (M_PI / 180);
     if (data->player->isFacing== 'N')
         data->player->rotationAngle =  3 * M_PI / 2;
     else if (data->player->isFacing== 'E')
@@ -76,6 +76,17 @@ void parsing(t_data *data, char *av)
     inite_data_player(data);
     // print_elements(data);
 }
+void	mouse(void *param)
+{
+    int x;
+    int y;
+	t_data	*data = (t_data *)param;
+    
+	mlx_get_mouse_pos(data->mlx, &x, &y);
+	data->player->rotationAngle += (float)(x -  data->store_x) / (WINDOW_HEIGHT / 2);
+	mlx_set_mouse_pos(data->mlx, data->store_x, (WINDOW_HEIGHT / 2));
+    ft_player(data);
+}
 
 int		main(int ac, char **av)
 {
@@ -84,14 +95,11 @@ int		main(int ac, char **av)
     data_mlx.mlx = mlx_init(WINDOW_WHIDTH,WINDOW_HEIGHT,"cub3D",1);
     data_mlx.player->img_player = mlx_new_image(data_mlx.mlx,data_mlx.mlx->width,data_mlx.mlx->height);
     data_mlx.map->img_map = mlx_new_image(data_mlx.mlx,TILE_MAP,TILE_MAP);
-    ft_map(&data_mlx);
     load_images(&data_mlx);
-    // draw_circle(&data_mlx,0x00FFFFFF);
     ft_player(&data_mlx);
-
     mlx_image_to_window(data_mlx.mlx,data_mlx.player->img_player,0,0);
+
     mlx_image_to_window(data_mlx.mlx,data_mlx.map->img_map,40,600);
-    //  ft_wait_move_animation(&data_mlx);
     mlx_loop_hook(data_mlx.mlx, ft_wait_move_animation, &data_mlx);
     mlx_loop_hook(data_mlx.mlx,ft_update_env,&data_mlx);
     mlx_loop(data_mlx.mlx);

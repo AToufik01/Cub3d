@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:36:50 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/08/14 15:55:44 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:27:28 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ void ft_update_env(void  *d)
         ft_update_position_player(data);
         ft_player(data);
     }
-    // else if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-    // {
-    //     ft_update_position_player(data);
-    //     ft_player(data);
-    // }
-    // else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-    // {
-    //     ft_update_position_player(data);
-    //     ft_player(data);
-    // }
-
-    
+    else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
+    {   
+        data->player->rotationAngle -=90;
+        ft_update_position_player(data);
+        ft_player(data);
+    } 
+    else if ( mlx_is_key_down(data->mlx, MLX_KEY_A))
+    {   
+        data->player->rotationAngle +=90;
+        ft_update_position_player(data);
+        ft_player(data);
+    } 
     if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) == 1 )
     {
         data->player->turnDirection = -1;

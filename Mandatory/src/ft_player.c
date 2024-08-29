@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:19:48 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/08/14 16:15:28 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:45:17 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,6 @@ int ft_update_position_player(t_data *data)
     return (0);
 }
 
-
-
-void view_player(t_data *data, int color)
-{
-
-    float centerX = TILE_MAP /2; 
-    float centerY = TILE_MAP /2;
-    float x1 = centerX + cos(data->player->rotationAngle) * 30;
-    float y1 = centerY + sin(data->player->rotationAngle) * 30;
-    draw_line(data, centerX,centerY, x1,y1, color);
-}
 
 void    ft_player(t_data *data)
 {

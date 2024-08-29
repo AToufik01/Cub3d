@@ -7,7 +7,7 @@ void load_images(t_data *data);
 void ft_wait_move_animation(void  *d);
 
 
-
+void	mouse(void *param);
 void ft_shoot_move_animation(t_data *data);
 
 int    ft_color(int r, int g, int b, int a);
