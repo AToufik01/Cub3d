@@ -35,6 +35,7 @@ void    fill_list(t_data *data, char *av)
     data->i = 0;
     data->j = 0;
     data->size = 0;
+    data->store_x = (WINDOW_WHIDTH / 2);
     data->player = malloc(sizeof(t_player));
     data->texture = malloc(sizeof(t_texture));
     data->animation= malloc(sizeof(t_animation));/// 

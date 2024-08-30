@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 14:30:18 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/08/29 13:19:32 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/08/30 22:06:06 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void    inite_data_player(t_data *data)
     data->player->walltexteur_e = mlx_load_png(data->texture->east_texture);
     convert_abgr_to_rgba(data->player->walltexteur_e);
 
+    data->player->walltexteur_d = mlx_load_png("./door.png");
+    convert_abgr_to_rgba(data->player->walltexteur_d);
     if (!data->player->walltexteur_n || !data->player->walltexteur_w || !data->player->walltexteur_s || !data->player->walltexteur_e)
     {
         // ft_lstclear(data->texture);
@@ -56,8 +58,9 @@ void    inite_data_player(t_data *data)
     }
     data->player->radius = 5;
     data->player->turnDirection = 0;
-    data->player->walkDirection = 0;
+    data->player->walkDirection = 1;
     data->player->moveSpeed = 80;
+    data->player->view_player = 0;
     data->player->rotationSpeed = 20* (M_PI / 180);
     if (data->player->isFacing== 'N')
         data->player->rotationAngle =  3 * M_PI / 2;
@@ -76,6 +79,7 @@ void parsing(t_data *data, char *av)
     inite_data_player(data);
     // print_elements(data);
 }
+
 void	mouse(void *param)
 {
     int x;
@@ -98,8 +102,8 @@ int		main(int ac, char **av)
     load_images(&data_mlx);
     ft_player(&data_mlx);
     mlx_image_to_window(data_mlx.mlx,data_mlx.player->img_player,0,0);
-
     mlx_image_to_window(data_mlx.mlx,data_mlx.map->img_map,40,600);
+    mlx_set_cursor_mode(data_mlx.mlx, MLX_MOUSE_DISABLED);
     mlx_loop_hook(data_mlx.mlx, ft_wait_move_animation, &data_mlx);
     mlx_loop_hook(data_mlx.mlx,ft_update_env,&data_mlx);
     mlx_loop(data_mlx.mlx);

@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:19:48 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/08/29 01:35:06 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/08/30 21:25:20 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int ft_check_wall_intersection(t_data *data, float px, float py)
                 int y_map = floor((py + y) / TILE_SIZE);
                 if (x_map >= 0 && x_map < data->map->width && y_map >= 0 && y_map < data->map->height)
                 {
-                    if (data->map->arr_map[y_map][x_map] == '1')
+                    if (data->map->arr_map[y_map][x_map] == '1' ||data->map->arr_map[y_map][x_map] == 'D')
                         return (1);
                 }
             }
@@ -63,8 +63,10 @@ int ft_check_wall(t_data *data, float x,float y)
     if (x_map < 0 || x_map >=data->map->width || y_map < 0 || y_map >= data->map->height)
         return 1;
     if (data->map->arr_map[y_map][x_map] == '1')
-        return 1;
-    return 0;
+        return (1);
+    else if (data->map->arr_map[y_map][x_map] == 'D')
+        return (2);
+    return (0);
     
 }
 
@@ -72,11 +74,18 @@ int ft_update_position_player(t_data *data)
 {
     data->player->rotationAngle += (data->player->turnDirection * data->player->rotationSpeed);
     int move_step;
-    double new_x;
-    double new_y;
+    float angle;
+    float new_x;
+    float new_y;
+    angle = data->player->rotationAngle;
+    if (data->player->view_player ==1)
+        angle -=3*M_PI/2;
+    else if (data->player->view_player ==2)
+        angle +=3*M_PI/2;
+    data->player->view_player = 0;
     move_step = data->player->walkDirection * data->player->moveSpeed;
-    new_x = data->player->x+ cos(data->player->rotationAngle) * move_step;
-    new_y = data->player->y + sin(data->player->rotationAngle) * move_step;
+    new_x = data->player->x+ cos(angle) * move_step;
+    new_y = data->player->y + sin(angle) * move_step;
     
 
     if (ft_check_wall_intersection(data, new_x,new_y) != 1)

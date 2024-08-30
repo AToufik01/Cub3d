@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 20:32:59 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/08/14 15:04:27 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:55:06 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,4 @@ void load_images(t_data *data)
     ft_load_imges_wait(data,"png/wait/wait_");
     ft_load_imges_shot(data,"png/shot/shot_");
     ft_load_imges_load(data,"png/load/load_");
-    ft_load_imges_view(data,"png/view1/view_");
 }

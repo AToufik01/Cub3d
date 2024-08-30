@@ -41,6 +41,7 @@ typedef struct s_player
     mlx_texture_t*walltexteur_s; //// 
     mlx_texture_t*walltexteur_w; //// 
     mlx_texture_t*walltexteur_e; //// 
+    mlx_texture_t*walltexteur_d; //// 
     float rotationSpeed;
 
 }   t_player;
@@ -99,6 +100,7 @@ typedef struct s_ray
     float  dy;
     float   x_intercept;
     float   y_intercept;
+    int     flag;
     bool    ray_is_up;
     bool    ray_is_down;
     bool    ray_is_left;
